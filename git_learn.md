@@ -55,3 +55,5 @@ git checkout master             # 回到master分支
 git checkout <commit> <file>    # 查看文件之前的版本， 它将工作目录中的 <file> 文件变成 <commit> 中那个文件的拷贝，并将它加入缓存区。
 git checkout <commit>           # 更新工作目录中的所有文件，这会使你处在分离HEAD的状态
 
+git checkout a1e8fb5 hello.py
+git checkout HEAD hello.py
