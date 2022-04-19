@@ -57,6 +57,3 @@ git checkout <commit>           # 更新工作目录中的所有文件，这会�
 
 git checkout a1e8fb5 hello.py
 git checkout HEAD hello.py
-
-#### revert
-git revert <commit>             # 生成1个撤销了commit引入的修改的新提交，并应用到当前分支
