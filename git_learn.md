@@ -16,4 +16,6 @@ git clone https://github.com/geeeeeeeeek/git-recipes.git    # 将Git教程clone�
 
 #### 添加与提交
 git add <filename>
-git add *               # 工作区 -> 缓存区
+git add *                       # 工作区 -> 缓存区
+
+git commit -m "代码提交信息"      # 缓存区 -> 本地仓库HEAD 
