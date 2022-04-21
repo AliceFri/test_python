@@ -119,3 +119,12 @@ git commit -m "完成功能"
 git checkout master
 git merge new-feature
 git branch -d new-feature
+
+
+#### 测试提交
+git pull origin dev
+
+[//]: # (git fetch )
+
+git branch --set-upstream-to=origin/dev qx_dev
+git push origin qx_dev
