@@ -128,3 +128,10 @@ git pull origin dev
 
 git branch --set-upstream-to=origin/dev qx_dev
 git push origin qx_dev
+
+
+
+
+#### 撤销commit中单个文件的修改
+git log <filename>
+git reset <>
