@@ -59,6 +59,28 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
-    def projectionArea(self, grid: List[List[int]]) -> int:
+    def projectionArea(self, grid) -> int:
+        # 三个方向
+        # 正面
+        area1 = sum(map(max, grid))
+
+        area2 = 0
+        for i in range(len(grid[0])):
+            area2 += max([grid[a][i] for a in range(len(grid))])
+
+        area3 = 0
+        for a in range(len(grid)):
+            for b in range(len(grid[0])):
+                if grid[a][b]:
+                    area3 += 1
+
+        return area1 + area2 + area3
 # leetcode submit region end(Prohibit modification and deletion)
+
+
+if __name__ == '__main__':
+    print(Solution().projectionArea([[1, 0], [0, 2]]))
