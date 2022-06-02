@@ -1,3 +1,5 @@
+import sys
+
 import pika
 
 credentials = pika.PlainCredentials('user', 'password')
@@ -8,10 +10,11 @@ connection = pika.BlockingConnection(
 )
 channel = connection.channel()
 
-# rabbitmqctl list_exchanges
-# rabbitmqctl list_queues name messages_ready messages_unacknowledged
-# rabbitmqctl list_bindings
 
 if __name__ == '__main__':
-    print(connection)
-    print(channel)
+    channel.exchange_declare(exchange='logs', exchange_type='fanout')
+
+    message = ' '.join(sys.argv[1:]) or "Hello World!"
+    channel.basic_publish(exchange='logs', routing_key='', body=message)
+    print(" [x] Sent %r" % message)
+    connection.close()
