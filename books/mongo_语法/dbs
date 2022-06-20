@@ -1,0 +1,5 @@
+db  # 当前数据库
+show dbs;       # 查看所有数据库
+use $dbname;    # 进入数据库
+
+show collections; # 查看所有集合
