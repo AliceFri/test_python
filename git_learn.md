@@ -88,6 +88,8 @@ git push origin master
 
 git push <remote> <branch>  # 将指定的分支推送到remote上。 它会在目标仓库中创建一个本地分支
 
+git push --force <remote> <branch> # 强制推送，即使目标分支已经存在
+
 
 #### 使用分支
 git branch          # 列出仓库中所有分支
