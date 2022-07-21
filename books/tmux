@@ -1,0 +1,55 @@
+### 安装
+sudo apt-get install tmux
+
+### 状态栏
+窗口信息(编号与名称)， 系统信息
+
+### 前缀键
+Ctrl+b
+
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+可更换前缀键
+
+
+
+
+### Session
+tmux new -s <session-name>	# 创建会话
+tmux detach / PRE + d		# 离开会话
+tmux ls				# 列出会话列表 PRE + s
+tmux attach -t <session-name>	# 进入会话
+tmux kill-session -t <session-name> # 杀死会话
+tmux switch -t <session-name> 	# 切换会话 PRE + $
+tmux rename -t <session-name> <new-name>
+
+
+### Panes
+tmux split-window		# 上下分离出一个Pane	PRE + "
+tmux split-window -h		# 左右分离出一个Pane	PRE + %
+
+tmux select-pane -U|D|L|R	# 光标切换到Pane	PRE + <arrow key>
+tmux swap-pane	-U|D		# 交换Pane位置
+
+PRE + x				# 关闭当前Pane
+PRE + !				# 将当前Pane拆分为一个Window
+PRE + z				# 全屏/原来大小
+PRE + q				# 显示window编号
+
+
+### Windows
+tmux new-window -n <window-name>	# 新建一个窗口名
+tmux select-window -t <window-name>	# 切换窗口
+tmux rename-window <new-name>		# 为当前窗口重命名
+
+PRE + c:	创建一个新窗口
+PRE + p:	切换到上一个窗口
+PRE + n:	切换到下一个窗口
+PRE + number:
+PRE + w:	从列表中选择窗口
+PRE + ,:	窗口重命名
+
+
+### 其他
+PRE + [:	复制/浏览模式

@@ -1,0 +1,85 @@
+https://kalacloud.com/blog/how-to-install-and-use-docker-on-ubuntu/
+
+docker.easydoc.net
+
+docker kill
+docker ps 查看当前运行中的容器
+docker images 查看镜像列表
+docker rm container-id 删除指定 id 的容器
+docker stop/start container-id 停止/启动指定 id 的容器
+docker rmi image-id 删除指定 id 的镜像
+docker volume ls 查看 volume 列表
+docker network ls 查看网络列表
+
+docker search xxx	搜索Docker Hub上可用的镜像
+docker pull xxx	将需要的镜像下载到计算机
+
+docker run -it
+
+docker --name name	设置名称
+	--rm		容器结束时自动删除
+
+
+docker exec -it acd3 bash	进入容器
+docker-compose exec backend bash
+
+docker build -t test:v1 .
+
+docker run -itd --name rcore-tutorial -v /home/quanxipeng/rCore-Tutorial:/mnt e342c
+
+docker run -p 27018:27017 --name mongo2 -v data2_mongo:/data/db -d mongo{或者images-id}
+vms_mongodb_url=mongodb://127.0.0.1:27018/vms
+
+
+docker container prune
+docker-compose up [-d]
+docker-compose down
+
+# 监控
+docker inspect <contain-id>
+docker-compose logs
+
+	docker build -t datahub:datahub .	# 根据DockerFile构建image
+
+	docker-compose exec mongo bash	# 进入Mongo服务
+	docker-compose up -d			# 创建启动服务	-d后台启动
+	docker-compose exec datahub bash	# 进入容器
+
+# 网卡
+
+	docker network ls
+	docker network inspect <网卡id>
+	docker network rm <网卡id>
+
+# rabitmq
+docker run -d --hostname my-rabbit --name some-rabbit-m -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
+
+
+
+
+
+
+
+
+
+
+############################# learn again
+
+### 镜像
+1. 获取镜像
+$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]
+docker pull ubuntu:18.04
+
+2. 列出镜像
+docker system df	查看统计空间信息
+docker image ls
+docker images
+
+3. 删除本地镜像
+$ docker image rm [选项] <镜像1> [<镜像2> ...]
+$ docker image rm $(docker image ls -q redis)
+
+
+### 容器
+docker run -it --rm ubuntu:18.04 bash		# i: 交互式， t: 终端  --rm: 退出容器后删除 bash 进入后的命令
+

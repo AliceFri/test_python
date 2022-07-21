@@ -1,0 +1,98 @@
+
+# 编译
+	bazel build cyber/demo_py/...
+	source cyber/setup.bash
+
+	bazel-bin/cyber/demo_py/demo_helloworld_py
+
+# 工具
+	cyber_channel echo <topic>
+
+----------------------------
+### 预备知识 -- bazel
+
+Bazel是google研发的一款开源构建和测试工具, 也是一种简单,易读的构建工具。
+
+优势：
+	1. 高级构建语言， 抽象，人类可读。
+	2. 快速可靠 (缓存)
+	3. 多平台
+	4. 支持多种语言
+
+使用流程：
+	1. project目录， 新建文件WORKSPACE；
+	2. 新建包， 在包下新建BUILD文件；
+	3. 包中编写源文件
+	4. 编辑BUILD文件
+	5. 编译 bazel build demo_pkg:hello
+	6. 执行 bazel run demo_pkg:hello
+
+
+----------------------------
+### 预备知识 -- protobuf
+
+protobuf是google研发的一种跨语言, 跨平台的序列化数据结构的方式，是一个灵活的，高效的用于序列化数据的协议。
+
+优点：
+	1. 高效 比xml空间少3-10倍，时间效率比xml快20-100倍
+	2. 便捷 结构化数据封装为类
+	3. 跨语言 支持多种编程语言
+	4. 高兼容性
+
+缺点：
+	1. 二进制格式可读性差
+	2. 缺乏字描述
+
+--------------------------------
+
+
+### part2 Cyber RT通信机制
+
+1. 话题通信	发布订阅模式 推
+2. 服务通信	服务端/客户端模式， 客户端请求， 服务端响应。 拉
+3. 参数	操作同一个对象
+4. 组件使用	定时器/消息过滤/消息融合
+
+
+话题通信：（发布-订阅模式）
+	不断更新的， 少逻辑处理的数据传输场景， 传感器。 消息是单向的。
+
+服务通信：  (以请求响应的方式实现不同节点之间数据交互的通信模式)
+	基于话题通信，消息是双向的。
+	用于偶然的，对实时性有要求，有一定逻辑处理需求的数据传输场景。
+
+
+参数：	（以共享的方式实现不同节点之间数据交互的通信模式）
+	类似全局变量， 基于服务通信实现
+	一般用于一些通用的数据，比如 车辆型号，尺寸，速度。
+
+
+组件：	（组件是Cyber RT提供的用于构建应用程序模块的基类）
+	可用于实现 数据过滤，融合。
+	分为通用组件， 定时器组件。
+
+
+### part3 常用命令
+
+cyber_node;	节点
+	cyber_node list
+	cyber_node info <node>
+cyber_channel;	话题
+	list
+	info <channel>
+	echo <channel>
+	hz   <channel>	频率
+	bw   <channel>  带宽
+	type <channel>  类型
+cyber_service;	服务
+	list
+	info
+cyber_launch;	start | stop
+cyber_monitor;	综合
+cyber_record;	录制与重放
+
+
+
+
+
+
