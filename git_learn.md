@@ -9,7 +9,7 @@ git clone https://github.com/geeeeeeeeek/git-recipes.git    # 将Git教程clone�
 
 
 #### 工作流
-1. 工作区 working dir
+1. 工作区 working dir 
 2. 缓存区 index(stage)
 3. HEAD  指向最新一次commit的引用
 
