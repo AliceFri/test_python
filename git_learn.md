@@ -78,6 +78,7 @@ git clean  # 清除未被track的文件
 #### rebase
 git rebase <base>
 将当前分支 rebase 到 <base>，这里可以是任何类型的提交引用（ID、分支名、标签，或是 HEAD 的相对引用）。
+冲突时，可以使用 解决冲突后， git add . 然后 git rebase --continue
 
 #### 提交到远程
 git checkout master
@@ -137,3 +138,7 @@ git push origin qx_dev
 #### 撤销commit中单个文件的修改
 git log <filename>
 git reset <>
+
+#### 清理本地的远程分支
+git remote prune origin --dry-run
+git remote prune origin
