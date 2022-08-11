@@ -1,0 +1,66 @@
+# mongo db
+表为plan， 字段为user, name
+
+# 索引
+db.getCollection("plan").getIndexes()
+db.getCollection("plan").dropIndex("name_1") 
+
+# 修改plan的name字段
+db.getCollection("plan").find().forEach(
+    function(item){
+        db.getCollection("plan").update({"_id": item._id}, {"$set": {"name": item.name}}, false, true)
+    }
+)
+
+
+# 修改字段为默认值
+db.getCollection("plan").updateMany(
+    {},
+    {
+        "$set": {"name": "default_name"}
+    }
+)
+
+# 删除某个字段Field
+db.getCollection("plan").update({}, {$unset: {"name": ""}}, false, true)
+
+# 查询 时间，正则
+db.getCollection("plan").find({
+    update_datetime: {$gt: new ISODate('2022-04-19')},
+    method: 'POST',
+    url: {$regex: 'api/ope'}
+})
+
+# 将某个字段改成列表 7:ObjectID 4: Array
+db.getCollection("plan").updateMany(
+{user: {$ne: null, $type: 7, $not: {$type: 4}}}, [{$set:{user:["$user"]}}])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### lookup
+
+1. 设置为第一个
+    {
+        '$lookup': {
+            'from': 'plan',
+            'localField': 'plan',
+            'foreignField': '_id',
+            'as': 'location',
+        },
+    },
+    {
+        '$set': {
+            'plan': {'$first': '$plan.name'},
+        }
+    },
