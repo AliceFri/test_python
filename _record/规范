@@ -1,0 +1,5 @@
+那以后我们合并test， dev分支的改动就按这个流程
+0. 本地dev分支与远端dev分支保持一致， 本地test分支与远端test分支保持一致
+1. 本地建一个分支，可以是从test checkout出来或者是reset test（跟远端test分支一致）
+2. 在这个分支上 git rebase dev。 解决冲突，rebase完成 (以dev分支为基础，应用test分支上的提交)
+3. 将这个分支push到远端，发起合并请求将这个分支的改动合到dev
