@@ -3,3 +3,9 @@
 1. 本地建一个分支，可以是从test checkout出来或者是reset test（跟远端test分支一致）
 2. 在这个分支上 git rebase dev。 解决冲突，rebase完成 (以dev分支为基础，应用test分支上的提交)
 3. 将这个分支push到远端，发起合并请求将这个分支的改动合到dev
+
+你还没用新的model，用不到create_model吧。 我们之前想写一个代替mongoengine的原因是，
+mongoengine的那个model不支持自动补全，
+mongoengine的model和pydantic的model要转换，
+mongoengine会帮我们吧ref对象自动查出来(这点很好，但是有些时候不需要，影响效率)
+mongoengine bug很多，自己的框架起码可以魔改。
