@@ -181,7 +181,7 @@ def create_model(baseclass, include: tuple = None, exclude: tuple = None) -> _Ba
 def optional_model(baseclass) -> _BaseModel:
     fields = baseclass.__fields__
     validators = {'__validators__': baseclass.__validators__}
-    new_fields = {key: (item.type_, None) for key, item in fields.items()}
+    new_fields = {key: (item.outer_type_, None) for key, item in fields.items()}
     return pydantic.create_model(
         f'{baseclass.__name__}_Optional',
         **new_fields,

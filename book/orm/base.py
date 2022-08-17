@@ -4,10 +4,11 @@ from typing import List, Dict, Any, Tuple, Union
 import bson
 import pydantic
 import pymongo
+import typing
 
-from .db import get_collection
-from .const import *
-from .f import _BaseModel
+from orm.db import get_collection
+from orm.const import *
+from orm.f import _BaseModel
 
 
 class ObjectId(bson.ObjectId):
@@ -32,6 +33,31 @@ class ObjectId(bson.ObjectId):
         raise TypeError("invalid ObjectId specified")
 
 
+def get_find_pipeline(sort: None, limit: None, **query) -> List[Dict]:
+    pipeline = BASE_PIPELINE.copy()
+    if query:
+        pipeline.append({"$match": query})
+    if sort:
+        pipeline.append({"$sort": sort})
+    if limit and limit > 0:
+        pipeline.append({"$limit": limit})
+    return pipeline
+
+
+def is_ref_model(cls: type) -> bool:
+    try:
+        return issubclass(cls, BaseModel)
+    except Exception:
+        return False
+
+
+def is_lst_ref_model(cls: typing) -> bool:
+    try:
+        return cls._name == 'List' and issubclass(cls.__args__[0], BaseModel)
+    except Exception:
+        return False
+
+
 class BaseModelMetaclass(pydantic.main.ModelMetaclass):
     def __new__(mcs, name, bases, namespace, **attrs):
         # 添加主键id, 暫不支持自定义
@@ -45,12 +71,12 @@ class BaseModelMetaclass(pydantic.main.ModelMetaclass):
         cls = super().__new__(mcs, name, bases, namespace, **attrs)
         # 保存引用信息
         cls.__ref_fields__ = {}
+        cls.__lst_ref_fields__ = {}
         for name, annotation_cls in cls.__annotations__.items():
-            try:
-                if issubclass(annotation_cls, BaseModel):
-                    cls.__ref_fields__[name] = annotation_cls
-            except TypeError:
-                pass
+            if is_ref_model(annotation_cls):
+                cls.__ref_fields__[name] = annotation_cls
+            elif is_lst_ref_model(annotation_cls):
+                cls.__lst_ref_fields__[name] = annotation_cls.__args__[0]
 
         # 创建索引
         for index in getattr(cls.Config, '_indexs', []):
@@ -64,7 +90,6 @@ class BaseModelMetaclass(pydantic.main.ModelMetaclass):
 
 
 class BaseModel(_BaseModel, metaclass=BaseModelMetaclass):
-
     @classmethod
     def get_collection_name(cls) -> str:
         if '_collection_name' not in cls.__dict__:
@@ -82,6 +107,10 @@ class BaseModel(_BaseModel, metaclass=BaseModelMetaclass):
     @classmethod
     def get_ref(cls) -> Dict[str, 'BaseModel']:
         return getattr(cls, '__ref_fields__', {})
+
+    @classmethod
+    def get_lst_ref(cls) -> Dict[str, 'BaseModel']:
+        return getattr(cls, '__lst_ref_fields__', {})
 
     @classmethod
     def get_delete_rule(cls) -> Dict[Tuple[type, str], int]:
@@ -122,35 +151,45 @@ class BaseModel(_BaseModel, metaclass=BaseModelMetaclass):
                 continue
             elif k in cls.get_ref():
                 d[k] = cls.get_ref()[k].parse_obj(v)
+            elif k in cls.get_lst_ref():
+                d[k] = [cls.get_lst_ref()[k].parse_obj(i) for i in v]
             else:
                 d[k] = v
         return cls(**d)
 
     @classmethod
     def _cascade_find_pipeline(cls) -> List[dict]:
-        pipeline = []
-        for name, ref_cls in cls.get_ref().items():
-            pipeline.extend(
-                [
-                    {
-                        "$lookup": {
-                            "from": ref_cls.get_collection_name(),
-                            "localField": name,
-                            "foreignField": "_id",
-                            "as": name,
-                            "pipeline": [
-                                *BASE_PIPELINE,
-                                *ref_cls._cascade_find_pipeline(),
-                            ],
-                        }
-                    },
+        def _cascade_lookup(ref_cls, name, get_first=True):
+            p = [
+                {
+                    "$lookup": {
+                        "from": ref_cls.get_collection_name(),
+                        "localField": name,
+                        "foreignField": "_id",
+                        "as": name,
+                        "pipeline": [
+                            *BASE_PIPELINE,
+                            *ref_cls._cascade_find_pipeline(),
+                        ],
+                    }
+                }
+            ]
+            if get_first:
+                p.append(
                     {
                         '$set': {
                             name: {'$arrayElemAt': [f'${name}', 0]},
                         },
-                    },
-                ]
-            )
+                    }
+                )
+            return p
+
+        pipeline = []
+        for name, ref_cls in cls.get_ref().items():
+            pipeline.extend(_cascade_lookup(ref_cls, name))
+        for name, ref_cls in cls.get_lst_ref().items():
+            pipeline.extend(_cascade_lookup(ref_cls, name, get_first=False))
+
         return pipeline
 
     @classmethod
@@ -165,14 +204,23 @@ class BaseModel(_BaseModel, metaclass=BaseModelMetaclass):
         return result[0]
 
     @classmethod
-    def find(cls, sort=None, limit=None, after_query=None, **query) -> List['BaseModel']:
-        pipeline = BASE_PIPELINE.copy()
-        if query:
-            pipeline.append({"$match": query})
-        if sort:
-            pipeline.append({"$sort": sort})
-        if limit and limit > 0:
-            pipeline.append({"$limit": limit})
+    def no_ref_find(
+        cls, sort=None, limit=None, project=None, extra_pipeline=None, **query
+    ) -> List['BaseModel']:
+        pipeline = get_find_pipeline(sort, limit, **query)
+        if project:
+            pipeline.append({"$project": project})
+        if extra_pipeline:
+            pipeline.extend(extra_pipeline)
+        return cls.aggregate(pipeline)
+
+    @classmethod
+    def find(
+        cls, sort=None, limit=None, after_query=None, extra_pipeline=None, **query
+    ) -> List['BaseModel']:
+        pipeline = get_find_pipeline(sort, limit, **query)
+        if extra_pipeline:
+            pipeline.extend(extra_pipeline)
         pipeline.extend(cls._cascade_find_pipeline())
         if after_query:
             pipeline.append({"$match": after_query})
@@ -190,13 +238,18 @@ class BaseModel(_BaseModel, metaclass=BaseModelMetaclass):
         将字典转换为mongodb的字典格式
         """
 
+        def is_exist_model(obj):
+            return isinstance(obj, BaseModel) and obj._is_exist()
+
         d = {}
         for k, v in input_dict.items():
             if k is None:
                 continue
-            if k in cls.get_ref() and isinstance(v, BaseModel) and v._is_exist():
+            if k in cls.get_ref() and is_exist_model(v):
                 # 引用类型存在, 转成OID，如果传进来的就是OID，则不做处理
                 d[k] = v.id
+            elif k in cls.get_lst_ref() and isinstance(v, list):
+                d[k] = [i.id if is_exist_model(i) else i for i in v]
             elif isinstance(v, Enum):
                 d[k] = v.value
             else:
@@ -241,6 +294,11 @@ class BaseModel(_BaseModel, metaclass=BaseModelMetaclass):
                 )
             elif rule == DELETE_RULE_CASCADE:
                 ref_cls.get_collection().delete_many({field: self.id})
+            elif rule == DELETE_RULE_PULL:
+                ref_cls.get_collection().update_many(
+                    {field: self.id},
+                    {'$pull': {field: self.id}},
+                )
 
     def update(self, **update_dict):  # 传入参数暂不支持更新引用类型
         if not self._is_exist():
