@@ -16,3 +16,12 @@
 
 
 8.15：   1. 开会确定landing tools 和 precheck 对接方案。
+        2. 微信机器人通知小组
+
+8.16：   1. 完成precheck 真值表开发
+        2. 支持 no_ref_find
+        3. 微信机器人通知上线运行
+
+8.17：  1. new model 数据检查功能
+        2. new model 支持list[ref_model]
+        3. precheck标准值初始化脚本
