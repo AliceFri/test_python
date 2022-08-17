@@ -9,3 +9,8 @@ mongoengine的那个model不支持自动补全，
 mongoengine的model和pydantic的model要转换，
 mongoengine会帮我们吧ref对象自动查出来(这点很好，但是有些时候不需要，影响效率)
 mongoengine bug很多，自己的框架起码可以魔改。
+
+1000    正式环境， 公网端口
+10000   正式环境， 内网端口
+2000    测试环境， 公网端口
+20000   测试环境， 内网端口
