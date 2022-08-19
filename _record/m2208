@@ -25,3 +25,5 @@
 8.17：  1. new model 数据检查功能
         2. new model 支持list[ref_model]
         3. precheck标准值初始化脚本
+
+8.18：  1. precheck对接，批量修改接口
