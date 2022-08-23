@@ -8,6 +8,7 @@ class ListNode:
 
 
 l1 = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+l2 = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
 
 
 class TreeNode:

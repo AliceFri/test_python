@@ -29,3 +29,20 @@
 8.18：  1. precheck对接，批量修改接口
 
 8.19:   1. 优化统一项目的通知样式。
+
+
+8.22：   1. 查询标准值same接口
+        2. 工单按start_datetime降序显示
+        3. 研究gitlab.ci
+            注册
+            docker run --rm -it -e "CA_CERTIFICATES_PATH=/etc/gitlab-runner/ca.crt" -v /home/ecs-user/docker-compose/gitlab-runner/gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:v13.8.0 register
+            注册完
+            config.toml文件就改变了， docker restart
+            查看是否有问题
+            docker exec <container name> /bin/sh -c "gitlab-runner verify"
+
+8.23:   0. 查扫码登录不上的原因 (80端口，重定向到https, 微信扫码登录用到了80端口)
+        1. 工单微信通知， 增加解决方案
+        2. 上到测试环境
+        3. 脚本修正新版vehicle model 和 vehicle type
+
