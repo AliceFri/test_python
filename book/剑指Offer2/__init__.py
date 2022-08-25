@@ -1,3 +1,8 @@
+"""
+35 题 good
+"""
+
+
 class ListNode:
     def __init__(self, x, next=None):
         self.val = x

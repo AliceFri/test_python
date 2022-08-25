@@ -46,3 +46,9 @@
         2. 上到测试环境
         3. 脚本修正新版vehicle model 和 vehicle type
 
+8.24：  1. 上线正式环境
+        2. 权限优化
+        3. 微信通知优化
+
+8.25：   1. 导入ve owner
+        2. 修改导出driver
