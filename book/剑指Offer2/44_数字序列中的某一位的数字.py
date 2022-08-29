@@ -12,12 +12,16 @@ class Solution:
             return n
         return self._find(n + 1)
 
+    def getNumsByDigit(self, digit: int) -> int:
+        if digit == 1:
+            return 10
+        return 10 ** (digit - 1) * 9
+
     def _find(self, n):
         # 先确定是几位数， 再确定是哪个数， 再确定是那个数的第几位
         digit = 1
-        while n > (10 ** (digit - 1) * 9) * digit:
-            print(digit, (10 ** (digit - 1) * 9) * digit)
-            n -= (10 ** (digit - 1) * 9) * digit    # digit位数 总长度=数的个数 * digit
+        while n > self.getNumsByDigit(digit) * digit:
+            n -= self.getNumsByDigit(digit) * digit    # digit位数 总长度=数的个数 * digit
             digit += 1
 
         # 确定是哪个数
