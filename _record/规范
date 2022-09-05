@@ -14,3 +14,5 @@ mongoengine bug很多，自己的框架起码可以魔改。
 10000   正式环境， 内网端口
 2000    测试环境， 公网端口
 20000   测试环境， 内网端口
+
+抛出异常 统一用 raise HTTPException 和 raise WarningNotice等。 区分代码报错和手动抛出的错误提示。
