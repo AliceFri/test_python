@@ -81,3 +81,8 @@
         2. 工单统计 default group
         3. 安全员模块权限
         4. 企业微信消息提醒
+
+
+9.6：    1. nginx图片限制
+        2. 定时查询车名有问题的(todo) 跟 api query log 一起处理
+        3. task, plan加一个 follower。
