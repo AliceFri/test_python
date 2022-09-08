@@ -86,3 +86,10 @@
 9.6：    1. nginx图片限制
         2. 定时查询车名有问题的(todo) 跟 api query log 一起处理
         3. task, plan加一个 follower。
+
+9.7:    1. 修改之前的Bug
+        2. 工单添加一个Pending截止日期
+
+9.8：    1. api query log
+        2. user自定义token过期时间， user aggregate 加上permission group
+        3. 定时查询车名有问题的，通知vms组员
