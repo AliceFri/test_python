@@ -129,10 +129,22 @@ def nio_server():
                     conn.close()
                     remove.append(conn)
                     break
-            except BlockingIOError as e:
-                pass
             except Exception as e:
                 pass
 
         connections = [i for i in connections if i not in remove]
 # 共用 bio_client
+
+# -----------------------------------------------------------------------
+
+def select_server():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((HOST, PORT))
+    server.listen(5)
+
+    server.setblocking(False)   # 设置成非阻塞
+    rlist = collections.deque([server])
+    wlist = collections.deque()
+    xlist = collections.deque()
+
+

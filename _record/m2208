@@ -93,3 +93,9 @@
 9.8：    1. api query log
         2. user自定义token过期时间， user aggregate 加上permission group
         3. 定时查询车名有问题的，通知vms组员
+
+====================================================
+
+9.13    1. 学习 web socket
+        2. Python实现 BIO NIO SELECT POLL
+        3. 学习Go
