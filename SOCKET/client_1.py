@@ -1,7 +1,8 @@
 import socket
 from time import sleep
 
-HOST ='sz-dl-339.autox.sz'
+HOST = 'sz-dl-339.autox.sz'
+HOST = 'pqxuan-NBLK-WAX9X'
 PORT = 18002
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

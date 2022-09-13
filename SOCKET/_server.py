@@ -60,11 +60,13 @@ AIO:    异步  注册CallBack, 内核负责读取数据回调。
 
 """
 import collections
+import select
 import socket
 import threading
 
-HOST = 'sz-dl-339.autox.sz'
+HOST = socket.gethostname()
 PORT = 18002
+
 
 def bio_server():
     def _sub_conn(conn: socket.socket):
@@ -79,10 +81,11 @@ def bio_server():
     server.bind((HOST, PORT))
     server.listen(5)
     while True:
-        print('wait accept')
-        conn, addr = server.accept()    # 主socket一直在处理连接， 生成的socket负责通信
+        print("wait accept")
+        conn, addr = server.accept()  # 主socket一直在处理连接， 生成的socket负责通信
         print(conn)
-        threading.Thread(target=_sub_conn, args=(conn, )).start()
+        threading.Thread(target=_sub_conn, args=(conn,)).start()
+
 
 def bio_client():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -99,12 +102,13 @@ def bio_client():
 
 # -----------------------------------------------------------------------
 
+
 def nio_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((HOST, PORT))
     server.listen(5)
 
-    server.setblocking(False)   # 设置成非阻塞
+    server.setblocking(False)  # 设置成非阻塞
     connections = collections.deque()
 
     while True:
@@ -133,18 +137,88 @@ def nio_server():
                 pass
 
         connections = [i for i in connections if i not in remove]
+
+
 # 共用 bio_client
 
 # -----------------------------------------------------------------------
+
 
 def select_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((HOST, PORT))
     server.listen(5)
 
-    server.setblocking(False)   # 设置成非阻塞
+    server.setblocking(False)  # 设置成非阻塞
     rlist = collections.deque([server])
     wlist = collections.deque()
     xlist = collections.deque()
 
+    while True:
+        print("wait accept")
+        read_list, write_list, error_list = select.select(rlist, wlist, xlist)
+        for socket_item in read_list:
+            if socket_item == server:
+                conn, addr = socket_item.accept()
+                conn.setblocking(False)
+                rlist.append(conn)
+            else:
+                print(socket_item.recv(5).decode("utf-8"))
 
+        for write_item in write_list:
+            pass
+
+        for error_item in error_list:
+            error_item.close()
+            rlist.remove(error_item)
+
+
+# -----------------------------------------------------------------------
+
+
+def epoll_server():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((HOST, PORT))
+    server.listen(5)
+
+    server.setblocking(False)  # 设置成非阻塞
+
+    connections = {}
+    epoll_obj = select.epoll()
+    print(f"files: {server.fileno()}")
+    epoll_obj.register(
+        server.fileno(), select.EPOLLIN | select.EPOLLOUT | select.EPOLLERR
+    )
+
+    while True:
+        print("wait accept")
+        events = epoll_obj.poll()
+        print(events)
+
+        for fd, event in events:
+            if fd == server.fileno():
+                conn, address = server.accept()
+                conn.setblocking(False)
+                epoll_obj.register(conn.fileno(), select.EPOLLIN)
+                connections[conn.fileno()] = conn
+            else:
+                if event & select.EPOLLIN:
+                    data = connections[fd].recv(5).decode("utf-8")
+                    if data == "end" or not data:
+                        epoll_obj.unregister(fd)
+                        connections[fd].close()
+                        del connections[fd]
+                    else:
+                        print(data)
+                elif event & select.EPOLLOUT:
+                    print(event, "out")
+                    pass
+                elif event & select.EPOLLERR:
+                    print(f"{fd} error")
+                    epoll_obj.unregister(fd)
+                    connections[fd].close()
+                    del connections[fd]
+
+
+if __name__ == "__main__":
+    pass
