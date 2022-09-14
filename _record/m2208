@@ -98,4 +98,7 @@
 
 9.13    1. 学习 web socket
         2. Python实现 BIO NIO SELECT POLL
-        3. 学习Go
+        3. 学习Go (todo)
+
+9.14    1. 从precheck 得到硬件数据
+        2. 工单时间查询优化
