@@ -100,5 +100,12 @@
         2. Python实现 BIO NIO SELECT POLL
         3. 学习Go (todo)
 
-9.14    1. 从precheck 得到硬件数据
-        2. 工单时间查询优化
+9.14    0. 车辆对应情况调整 done
+        1. 从precheck 得到硬件数据 (precheck 传过来是否硬件这个参数)
+        2. 工单时间查询优化, 更新结束时间
+        3. 任务加 创建者
+        4. agent 增加test环境
+
+9.15    0. 整理项目中用到的企业微信api, 梳理替换逻辑
+
+9.16    1. mongodb dev环境加上了密码
