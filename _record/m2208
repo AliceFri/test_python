@@ -35,7 +35,9 @@
         2. 工单按start_datetime降序显示
         3. 研究gitlab.ci
             注册
-            docker run --rm -it -e "CA_CERTIFICATES_PATH=/etc/gitlab-runner/ca.crt" -v /home/ecs-user/docker-compose/gitlab-runner/gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:v13.8.0 register
+            docker run --rm -it -e "CA_CERTIFICATES_PATH=/etc/gitlab-runner/ca.crt"
+                -v /root/docker-compose/gitlab-runner/gitlab-runner-config:/etc/gitlab-runner
+                gitlab/gitlab-runner:v13.8.0 register
             注册完
             config.toml文件就改变了， docker restart
             查看是否有问题
@@ -109,3 +111,24 @@
 9.15    0. 整理项目中用到的企业微信api, 梳理替换逻辑
 
 9.16    1. mongodb dev环境加上了密码
+
+====================================================
+
+9.19    1. 接入xAccount   （进度 20%）
+        2. vms 加入appid, appsecret, ACCESS_TOKEN  (done)
+            接入 外部应用, 的
+        3. precheck 选择 module, item对应的车辆      (done todo 提醒前端)
+
+9.20    1. vms appid, appsecret, 接入外部应用加入鉴权
+        2. precheck 选择 module, item对应的车辆。 export
+
+9.21    1. 诉职报告
+        2. precheck 标准值初始化 改变
+
+9.22    1. 人员区分离职， 看怎么拿到地区信息
+        2. 看xAccount怎么接入 跑通流程
+        3. 确定 地区权限， 时间权限怎么做
+
+=====================================================
+
+9.26    1. todo precheck 加上每日统计提醒。
