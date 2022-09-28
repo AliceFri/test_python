@@ -34,10 +34,24 @@
 8.22：   1. 查询标准值same接口
         2. 工单按start_datetime降序显示
         3. 研究gitlab.ci
+            docker 中安装
+            1. 写    docker-compose.yml
+
+version: "3"
+services:
+  gitlab-runner:
+    image: gitlab/gitlab-runner:v13.8.0
+    volumes:
+      - ./gitlab-runner-config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      CA_CERTIFICATES_PATH: "/etc/gitlab-runner"
+    restart: always
+
+
             注册
-            docker run --rm -it -e "CA_CERTIFICATES_PATH=/etc/gitlab-runner/ca.crt"
-                -v /root/docker-compose/gitlab-runner/gitlab-runner-config:/etc/gitlab-runner
-                gitlab/gitlab-runner:v13.8.0 register
+            docker run --rm -it -e "CA_CERTIFICATES_PATH=/etc/gitlab-runner/ca.crt" -v /root/docker-compose/gitlab-runner/gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:v13.8.0 register
+            docker run --rm -it -e "CA_CERTIFICATES_PATH=/etc/gitlab-runner/ca.crt" -v /home/vms/docker-compose/gitlab-runner/gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:v13.8.0 register
             注册完
             config.toml文件就改变了， docker restart
             查看是否有问题
@@ -131,8 +145,14 @@
 
 =====================================================
 
-9.26    1. todo precheck 加上每日统计提醒。
+9.26    1. todo precheck 加上每日统计提醒。 默认只显示半个月的data
         2. 关闭了 每日复制正式环境数据到test， 记得开启
         3. 权限（地区和日期）    done
 
+9.27    1. 标准值数据导出与导入
+        2. 跟踪precheck，收集用户反馈，制定需求
+
+9.28    1. us_vms部署         done
+        2. xaccount 代码
+        3. vms车辆没有标准值的时候， precheck调了to_json的话，就给车辆赋上标准值初值   done
 
