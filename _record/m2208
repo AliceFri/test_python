@@ -156,3 +156,7 @@ services:
         2. xaccount 代码
         3. vms车辆没有标准值的时候， precheck调了to_json的话，就给车辆赋上标准值初值   done
 
+9.29    1. xaccount test环境接入代码  done
+        2. xaccount 接入测试 todo
+
+
