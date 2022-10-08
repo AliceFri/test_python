@@ -9,6 +9,21 @@
 优点： 占用内存小，并发能力强，安装简单，配置方便
 
 ----
+## -1. nginx 高可用
+
+Keepalived 技术。 两台nginx的keepalived服务相互监督。
+
+虚拟ip, 用户访问入口在虚拟ip上， 虚拟ip可以在任意一台nginx上。
+
+keepalived管理这个虚拟ip。选举。
+
+脚本 监控 nginx， kill 进程 keepalived
+
+### 选举方式
+
+优先级， 优先级高的，更高概率成为master 
+
+----
 
 ## 0. 多进程模型
     
@@ -57,12 +72,23 @@ ps -aux | grep nginx 查看nginx进程
         location /              # 匹配 uri
             root html;          # 目录
             index index.html index.htm; # 默认页
-            
+            rewrite ^/hwd$ /hello/fuck_rewrite break;   # url重写 
+            rewrite ^/(name_.*)$ /hello/fuck_$1 break;   # url重写 
             proxy_pass http://www.baidu.com # 反向代理
 
         error_page  500 502 503 504  /50.html; # 转向
         location = /50.html
             root html;
+
+        location ~*/(js|img|css) {      # 动静分离
+            root html;
+            index index.html index.htm; # 默认页
+
+            valid_referers 192.168.44.101;
+            if ($invalid_referer) {
+                return 403
+            }
+        }
 
 ----
 
@@ -134,3 +160,28 @@ ps -aux | grep nginx 查看nginx进程
 
     # 通配符 域名
     server_name *.mmban.com
+
+----
+
+### 5. URLRewrite
+
+rewrite <regex> <replaceMent> [flag]
+
+rewrite ^/(name_.*)$ /hello/fuck_$1 break;   # url重写 
+
+break: 本条规则匹配完成即终止
+last: 匹配完成后，继续乡下匹配
+redirect: 返回302重定向， 会改变url
+permanent: 返回301重定向, 会改变url
+
+----
+
+### 6. 防盗链
+http协议的 Referer 字段：从哪个url发起的访问。 
+
+    valid_referers none 192.168.44.101;
+    if ($invalid_referer) {
+        return 403
+    }
+
+none: 不带referer字段的请求可以访问
