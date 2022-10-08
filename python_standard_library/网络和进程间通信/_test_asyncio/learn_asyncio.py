@@ -116,6 +116,6 @@ asyncio.wait        在超时发生时不会取消可等待对象。
 
 if __name__ == '__main__':
     # asyncio.run(t2())
-    # asyncio.run(say_helloworld())
+    asyncio.run(say_helloworld())
     # asyncio.run(async_say_helloworld())
-    asyncio.run(run_gather())
+    # asyncio.run(run_gather())
