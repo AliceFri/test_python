@@ -10,4 +10,5 @@
     b. Node， NoSQL数据库
     c. 未来可在移动平台
 
+https://wangdoc.com/javascript/operators/index.html
 """
