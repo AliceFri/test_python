@@ -157,6 +157,19 @@ services:
         3. vms车辆没有标准值的时候， precheck调了to_json的话，就给车辆赋上标准值初值   done
 
 9.29    1. xaccount test环境接入代码  done
-        2. xaccount 接入测试 todo
+        2. xaccount 接入测试 Done
 
+=====================================================
+10.10   1. 发版
 
+10.11   1. vms_us 前后端流水线 Done
+        2. 离职用户标记 用户管理界面不显示  Done
+        3. 安排测试接入 xAccount  Done
+        4. 学习 JS    TODO
+
+10.12   1. 先把数据库迁到云数据库  TODO
+        2. 学习   K8s          TODO
+        3. 对接 trgs 的文档      Done
+
+10.13   1. 对接 trgs 的文档      Done
+        2. vms  GROUP          TODO

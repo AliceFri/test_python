@@ -11,4 +11,6 @@
     c. 未来可在移动平台
 
 https://wangdoc.com/javascript/operators/index.html
+
+https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/JavaScript_basics
 """

@@ -1,0 +1,1 @@
+http://www.patrickzhong.com/TypeScript/zh/reference/iterators-and-generators.html
