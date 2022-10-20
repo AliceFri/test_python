@@ -173,3 +173,19 @@ services:
 
 10.13   1. 对接 trgs 的文档      Done
         2. vms  GROUP          TODO
+
+=====================================================
+
+10.17   0. 提醒 aliyun 机器充值       Done
+        1. precheck  中英文 对照     Done
+            1.1 单条的添加           Done
+        2. 查 下正式环境角色名单      TODO
+        3. route server             TODO
+        4. VMS GROUP                TODO
+        5. 迁移数据库                TODO
+        6. 迁移服务到    K8s         TODO
+
+10.18   1. 添加任务开始前半个小时提醒    Done
+        2. precheck 中英文对照       Done
+
+10.19   1. vms group
