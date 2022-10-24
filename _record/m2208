@@ -189,3 +189,11 @@ services:
         2. precheck 中英文对照       Done
 
 10.19   1. vms group
+
+10.20   1. vms group
+        2.  create_model 支持 可选   Done
+            new_model 支持批量删除    Done
+            group   CRUD            Done
+            group vehicle CRUD
+
+10.21   1. 切换 code.autox.ds:6543 to hub.autox.tech
