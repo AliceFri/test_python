@@ -58,7 +58,8 @@ docker run -d --hostname my-rabbit --name some-rabbit-m -p 15672:15672 -p 5672:5
 
 # cp
 docker cp  96f7f14e99ab:/www /tmp/
-
+docker cp 3458822c1eca:/cache/standard_value.dat .
+docker cp standard_value 96f7f14e99ab:/cache
 
 
 

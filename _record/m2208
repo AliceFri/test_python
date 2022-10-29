@@ -157,6 +157,43 @@ services:
         3. vms车辆没有标准值的时候， precheck调了to_json的话，就给车辆赋上标准值初值   done
 
 9.29    1. xaccount test环境接入代码  done
-        2. xaccount 接入测试 todo
+        2. xaccount 接入测试 Done
 
+=====================================================
+10.10   1. 发版
 
+10.11   1. vms_us 前后端流水线 Done
+        2. 离职用户标记 用户管理界面不显示  Done
+        3. 安排测试接入 xAccount  Done
+        4. 学习 JS    TODO
+
+10.12   1. 先把数据库迁到云数据库  TODO
+        2. 学习   K8s          TODO
+        3. 对接 trgs 的文档      Done
+
+10.13   1. 对接 trgs 的文档      Done
+        2. vms  GROUP          TODO
+
+=====================================================
+
+10.17   0. 提醒 aliyun 机器充值       Done
+        1. precheck  中英文 对照     Done
+            1.1 单条的添加           Done
+        2. 查 下正式环境角色名单      TODO
+        3. route server             TODO
+        4. VMS GROUP                TODO
+        5. 迁移数据库                TODO
+        6. 迁移服务到    K8s         TODO
+
+10.18   1. 添加任务开始前半个小时提醒    Done
+        2. precheck 中英文对照       Done
+
+10.19   1. vms group
+
+10.20   1. vms group
+        2.  create_model 支持 可选   Done
+            new_model 支持批量删除    Done
+            group   CRUD            Done
+            group vehicle CRUD
+
+10.21   1. 切换 code.autox.ds:6543 to hub.autox.tech
