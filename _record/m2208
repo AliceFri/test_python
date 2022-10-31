@@ -181,8 +181,8 @@ services:
             1.1 单条的添加           Done
         2. 查 下正式环境角色名单      TODO
         3. route server             TODO
-        4. VMS GROUP                TODO
-        5. 迁移数据库                TODO
+        4. VMS GROUP                Done
+        // 5. 迁移数据库                TODO
         6. 迁移服务到    K8s         TODO
 
 10.18   1. 添加任务开始前半个小时提醒    Done
@@ -197,3 +197,15 @@ services:
             group vehicle CRUD
 
 10.21   1. 切换 code.autox.ds:6543 to hub.autox.tech
+
+======================================================
+10.24   1. vms group 70%    Done
+        2. 切换 code.autox.ds:6543 镜像库 hub.autox.tech     Done
+        3. vms us帮忙跟进一下测试   TODO
+
+10.25   1. precheck 支持导入      Done
+
+10.26   1. 车端 agent 卸载
+
+10.28   1. 车端 agent 分工卸载
+        2. precheck 优化批量修改标准值   Done
