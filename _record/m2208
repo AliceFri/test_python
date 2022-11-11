@@ -180,7 +180,7 @@ services:
         1. precheck  中英文 对照     Done
             1.1 单条的添加           Done
         2. 查 下正式环境角色名单      TODO
-        3. route server             TODO
+        3. route server             Done
         4. VMS GROUP                Done
         // 5. 迁移数据库                TODO
         6. 迁移服务到    K8s         TODO
@@ -215,7 +215,22 @@ services:
         1. ts后类方面的内容
         2. k8s概念学习
 
-11.1    0. vehicle 增加precheck统计 (比如输入一个item，显示所有车这个item最新的值)    Done
+11.1    0. vehicle 增加precheck统计 (比如输入一个item，显示所有车这个item最新的值)
+            车辆统计弹窗添加precheck 结果固件统计     Done
         1. dev环境 数据库 切换 阿里云
 
-11.2    0.
+11.3    0. 将 trgs-routing-service 部署到 exa   Done
+        1. 学习 K8s   Half
+
+11.4    0. 发版
+        1. precheck 完整统计
+        2. 转正述职报告
+=======================================================
+
+11.7    1. precheck 统计 Done
+
+11.8    1. 学习 K8s
+
+11.10   1. prechekc 生成车辆标准值脚本
+        2. vms_us vehicle aggregation fix
+        3. fix vehicle put
