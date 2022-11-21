@@ -225,6 +225,7 @@ services:
 11.4    0. 发版
         1. precheck 完整统计
         2. 转正述职报告
+
 =======================================================
 
 11.7    1. precheck 统计 Done
@@ -234,3 +235,13 @@ services:
 11.10   1. prechekc 生成车辆标准值脚本
         2. vms_us vehicle aggregation fix
         3. fix vehicle put
+
+=======================================================
+11.14   1. 封装 route gene service 加上 高德ETA 和 Destination
+11.15   1. vms precheck 统计 bug fix
+11.16   1. vms precheck 统计 bug fix
+11.17   1. vms us 放开权限
+        2. vms us slack用户导入；
+
+=======================================================
+11.21

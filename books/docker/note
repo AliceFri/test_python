@@ -53,7 +53,7 @@ docker-compose logs
 
 # rabitmq
 docker run -d --hostname my-rabbit --name some-rabbit-m -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
-
+docker run -it -p 8765:8765 --rm --name rgsgd bf12ea start-server-package
 
 
 # cp
@@ -80,6 +80,14 @@ docker images
 3. 删除本地镜像
 $ docker image rm [选项] <镜像1> [<镜像2> ...]
 $ docker image rm $(docker image ls -q redis)
+
+4. 镜像打包 和 导入
+docker save -o /root/xxx.tar <name>
+docker load -i /root/xxx.tar
+
+# 容器打包和导入
+docker export -o /root/xxx.tar <name>
+docker import xx.tar <name>:latest
 
 
 ### 容器
