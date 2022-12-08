@@ -247,3 +247,25 @@ services:
 11.21
 11.22   1. 加上points, 自动化部署 eta
 11.23   1. vms group， 标准值修改
+
+=======================================================
+11.28   1. trgs 测试pac66
+11.29   1. vms发版
+        2. gdeta 限流
+12.01   1. vms tasktype 增添删减
+        2. vms trgs创建带上tasktype
+        3. trgs 真车测试
+12.02   1. vms 发版
+
+=======================================================
+12.05   1. rgs服务加上https, 加上验证           TODO
+        2. 提供trgs， vms公网可访问的test环境
+
+12.06   1. vms group修改
+        2. rgs 多地图版本
+        3. vms发版后， trgs记得写入 allow_path  Done
+
+12.07   1. rgs 挂载卷                          Done
+        2. vms 安全员加上班次配置                Done
+
+12.08   1.
