@@ -3,3 +3,12 @@ show dbs;       # 查看所有数据库
 use $dbname;    # 进入数据库
 
 show collections; # 查看所有集合
+
+
+# 索引
+删除索引
+db.group_co_driver.dropIndex("user_1")
+查看索引
+db.group_co_driver.getIndexes()
+创建索引
+db.sites.ensureIndex({name: 1, domain: -1})
