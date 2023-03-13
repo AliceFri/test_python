@@ -35,6 +35,17 @@ db.getCollection("plan").find({
 db.getCollection("plan").updateMany(
 {user: {$ne: null, $type: 7, $not: {$type: 4}}}, [{$set:{user:["$user"]}}])
 
+# 根据表中某个字段生成新字段
+
+db.getCollection("parkablecurbs").find().forEach(
+    function(item){
+        j = {type: 'LineString', coordinates: []};
+        for (i of item.polyline){
+            j.coordinates.push([i.lon, i.lat]);
+        }
+        db.getCollection("plan").update({"_id": item._id}, {"$set": {"geolinestring": j}}, false, true)
+    }
+)
 
 
 
