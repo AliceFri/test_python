@@ -47,6 +47,15 @@ db.getCollection("parkablecurbs").find().forEach(
     }
 )
 
+db.getCollection("vehicle").find({hostname: / /}).forEach(function(item) {
+    h = item.hostname.trim();
+    db.getCollection("vehicle").update({"_id": item._id}, {$unset: {"hostname": ""}, "$set": {"hostname": h}})
+}) 
+
+62c4ca45e0e78a0e155333b2
+6302e15ff50dfef02c5bdb3d
+6302e1b3f1d189311b88b3c9
+62a010d4260b2888740acf37
 
 
 
