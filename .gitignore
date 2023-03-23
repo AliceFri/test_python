@@ -2,4 +2,4 @@
 */*pycache*
 *.pyc
 
-/Rust/projects/hello_cargo/target/
+/Rust/projects/*/target/
