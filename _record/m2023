@@ -99,9 +99,9 @@ Rgs 下载地图速度问题，推进下多地图
     2. Rgs支持北京, 上海          done
 
 3.22：
-    0. vms 引导到新环境           done
-    1. trgs 限制区域，返回最近的点     done
-    2. 定时拉新地图，清除旧地图         done
+    0. vms 引导到新环境               done
+    1. trgs 限制区域，返回最近的点      done
+    2. 定时拉新地图，清除旧地图          done
     3. k8s任务
-    4. learn go
+    4. learn rust
     5. 新容器
