@@ -105,3 +105,23 @@ Rgs 下载地图速度问题，推进下多地图
     3. k8s任务
     4. learn rust
     5. 新容器
+
+------------------------------------------------------------
+3.27    # 1. vms 车辆空格 ； vms 微信通知失败处理；                done
+        # 2. trgs 拿到地图区域范围                               Done
+        # 3. trgs 保存 选择的map Version                       (交给 青山)
+        # 4. RGS容器,Jenkins agent容器重启能够直接提供服务        done
+
+        # 5. 在请求中 新增
+            junction_scenario               # 场景
+                Protected Straight
+                Unprotected Straight
+                Protected Left
+                Unprotected Left
+                Protected Right
+                Unprotected Right
+                Protected Uturn
+                Unprotected Uturn
+            use_scenario_weight
+        # 6. random_order 里面填 限制区域id                Done
+        # 6. trgs, vms  log 记录优化                        Done
