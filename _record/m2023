@@ -125,3 +125,8 @@ Rgs 下载地图速度问题，推进下多地图
             use_scenario_weight
         # 6. random_order 里面填 限制区域id                Done
         # 6. trgs, vms  log 记录优化                        Done
+=====================================================================
+
+1. RGS 场景配置                                         Done
+2. VMS 微信任务每个月一删， 任务加上 创建时间                 Done
+3. RGS 定时更新                                          Done
