@@ -3,3 +3,4 @@
 *.pyc
 
 /Rust/projects/*/target/
+/Rust/all_proj/*/target/
