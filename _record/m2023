@@ -134,7 +134,17 @@ Rgs 下载地图速度问题，推进下多地图
 4. TRGS 更新parking curbs 点, 注意移除旧的。
 
 =====================================================================
-1. VMS 支持 precheck 兼容多环境                            TODO
+1. VMS 支持 precheck 兼容多环境                            Done
+2. RGS fix 一个环境错误，使用另一个环境                       Done
 2. RTK
+    1. RTK 账号管理员                                    Done
+    2. Rtk Notifyer                                     Half
+    3. Rtk 与车辆关联的历史信息
+4. TRGS 跟进 random order 订单创建失败
+5. VMS Rtk账号，                                       Half
 
+=====================================================================
+Vms Rtk账号, Rtk Notifyer                                 Done
+TRGS 错误订单标红
+TRGS 2.3 地图区域内根据图层显示该图层可跑的路线
 

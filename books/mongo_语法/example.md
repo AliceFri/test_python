@@ -47,6 +47,9 @@ db.getCollection("parkablecurbs").find().forEach(
     }
 )
 
+# 弹出数组中的元素
+db.getCollection("user").updateMany({regions: "深圳/福田"}, {'$pull': {regions: "深圳/福田"}})
+
 db.getCollection("vehicle").find({hostname: / /}).forEach(function(item) {
     h = item.hostname.trim();
     db.getCollection("vehicle").update({"_id": item._id}, {$unset: {"hostname": ""}, "$set": {"hostname": h}})
