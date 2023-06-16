@@ -182,11 +182,63 @@ todo:
 2. 部署geoserver到exa上
 3. rgs区域内算路demo部署，与trgs对接接口
 5.15:
-1. vms 添加个访问接口 开放给 仲冠文
-2. vms 前端 ci/cd 优化， 数据库每日更新
-3. geoserver trgs 后端代理
-4. rgs 对接支持区域内算路
-5. trgs 阿里云 访问到 rgs, rgs 尝试下迁移到阿里云（镜像太大，下载地图太慢）
-6.  vms 回收 vms.autox.tech 域名
-    vms 记录 pre check 检查/检查结束 时间
 
+3. geoserver trgs 后端代理                   done   admin/geoserver
+4. rgs 对接支持区域内算路
+4.1 rgs 接入安全团队 jwt_token                done
+5. trgs 阿里云 访问到 rgs                     done    区分来源ip
+6.  vms 回收 vms.autox.tech 域名
+    vms 记录 smp pre check 检查/检查结束 时间   done
+1. vms 添加个访问接口 开放给 仲冠文             half   优化了 gitlab-ci (if-not-present)
+2. vms 前端 ci/cd 优化， 数据库每日更新         done
+3. vms 迁移地区时， 保险如何处理                done
+
+4. vms rtk 迭代
+=====================================================================
+上周做的：
+1. 部署geoserver, trgs后端代理
+2. rgs 开放阿里云访问， 接入安全团队jwt_token鉴权
+3. vms 记录 smp, pre check 检查/检查结束时间，一些bug修复
+
+1. vms bug fix, 微信提醒                     done
+2. vms 添加访问接口开放给仲冠文                 done
+3. vms 记录smp时间，对接 xgateway             half
+4. trgs task type                           done
+4. rgs us aliyun                            done
+4. rgs 区分/记录来源ip                        todo
+5. vms rtk账户迭代需求                        done
+6. vms 回收 vms.autox.tech 域名              done
+7. rgs 对接 区域内算路                        todo
+
+======================================================================
+2. vms 回收 vms.autox.tech 域名              done
+3. rgs 对接 区域内算路                        todo
+
+4. geoserver lane信息根据新地图版本变化        todo
+5. rgs 返回个预估时间                         done
+6. 阿里云加上 日志服务                         todo
+7. vms-us 加上 tester返回                    half
+8. 加上是否使用高速 接口                       done
+9. 下载地图的容器                              done
+
+0605 上周做了：
+1. rgs返回预估时间和距离, 加上是否使用高速参数
+2. rgs对接区域内算路，增加分段接口
+3. 构建用于下载地图的容器
+4. lane地图每日更新一次，随最新地图版本变化
+
+======================================================================
+2. vms smp信息经由xgateway上传                done
+3. vms 阿里云加上日志服务                      done
+4. 部署优化 rgs 对接区域内算路                  done
+5. Trgs 显示vms报错信息优化                    todo
+
+======================================================================
+1. rgs 区分/记录来源ip                        todo
+2. trgs 区域内分路起终点设置为parking curbs     done
+3. trgs 记录下从crs获取的curbs地图版本并展示     done
+4. trgs useHighWay 设置                      done
+5. rgs 每个地图保持两个环境                     done
+6. trgs 分段确定是parking curbs               done
+7. vms-us 更新trgs相关接口                    done
+8. rgs-us 更新                                todo
