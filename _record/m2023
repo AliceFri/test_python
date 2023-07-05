@@ -242,3 +242,17 @@ todo:
 6. trgs 分段确定是parking curbs               done
 7. vms-us 更新trgs相关接口                    done
 8. rgs-us 更新                                todo
+
+======================================================================
+
+trgs2.5 需求
+1. order group -- parking curb优化        half
+2. order group 添加高速配置选项             half
+3. rgs 把参数调小一点                       done
+4. blacklist 参数
+5. vms前端部署优化
+6. trgs task smpinfo                     todo
+6. vms worklog优化                        todo
+6. rgs 测试环境                             todo
+6. 搭建仿真环境                               todo
+
