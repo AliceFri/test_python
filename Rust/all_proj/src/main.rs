@@ -7,8 +7,12 @@ fn main() {
     // str_();
     // if_();
     // loop_();
-    fn_();
+    // fn_();
+
+    // _tuple();
+    _arr();
 }
+
 
 
 fn data_type() {
@@ -178,3 +182,27 @@ fn double_price2(price: &mut i32) {
 fn show(name: String){
     // show noting
 }
+
+
+fn _tuple(){
+    // let tuple: (数据类型1， 数据类型2 ...) = (数据1， 数据2， ...)
+
+    let t = ("hello", "world!");
+    println!("{} {}", t.0, t.1);
+}
+
+
+fn _arr(){
+    // let 变量名称: [数据类型；数组长度] = 【值1， 值2， 值3】；
+    //  数组 也有可变， let mut
+    // 数组做参数，属于借用。 值传递 引用传递，想修改数组， 就传指针地址进去
+    let arr1:[i32; 2] = [100, 200];
+    // let arr2 = [100, "hello"];
+    let arr3:[&str; 3] = [""; 3];
+
+    println!("{:?}", arr1);
+    // println!("{:?}", arr2);
+    println!("{:?}", arr3);
+}
+
+// 基础类型 都实现了copy trait 所以在赋值时会做一次值拷贝！！
