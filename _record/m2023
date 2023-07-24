@@ -269,7 +269,7 @@ trgs2.5 需求
 =======================================================================
 3. blacklist 参数                         todo
 4. rgs 添加 blacklist.
-4. trgs task smpinfo, driver type        half
+4. trgs task smpinfo, driver type         done
 5. 请求超过2分钟后返回504                    done
 5. vms前端部署优化                        todo
 6. 搭建仿真环境                           todo
@@ -279,3 +279,7 @@ rgs改动：
 1. blacklist问题： 坐标返回了负的， 返回起终点格式， 一个blacklist 对应一个planwaypoints
 2. coverage和random两种 会多一个 blacklist polygon 列表
 
+=======================================================================
+Rgs 算路排除限制区域
+Trgs 订单实际路线展示
+Vms 下线车辆的任务自动删除
