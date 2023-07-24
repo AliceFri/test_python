@@ -265,7 +265,17 @@ trgs2.5 需求
     2. 国内地图每日更新 加入检测机制             done
     3. 国内/us laneId, 加入刷新机制            done
 2. order group -- parking curb优化        done
+
+=======================================================================
 3. blacklist 参数                         todo
-4. trgs task smpinfo                     todo
+4. rgs 添加 blacklist.
+4. trgs task smpinfo, driver type        half
+5. 请求超过2分钟后返回504                    done
 5. vms前端部署优化                        todo
 6. 搭建仿真环境                           todo
+
+
+rgs改动：
+1. blacklist问题： 坐标返回了负的， 返回起终点格式， 一个blacklist 对应一个planwaypoints
+2. coverage和random两种 会多一个 blacklist polygon 列表
+
