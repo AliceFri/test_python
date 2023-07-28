@@ -280,6 +280,10 @@ rgs改动：
 2. coverage和random两种 会多一个 blacklist polygon 列表
 
 =======================================================================
-Rgs 算路排除限制区域
-Trgs 订单实际路线展示
-Vms 下线车辆的任务自动删除
+Rgs 算路排除限制区域                        todo
+Trgs 订单实际路线展示                       half
+Vms 下线车辆的任务自动删除                   done
+TRGS TASK SMPinfo bug（缺少remark）       done
+
+VMS worklog添加自增id                     done
+VMS 车辆效率接口优化                        done
