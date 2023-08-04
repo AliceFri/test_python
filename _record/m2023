@@ -289,7 +289,11 @@ VMS worklog添加自增id                     done
 VMS 车辆效率接口优化                        done
 
 =======================================================================
-1. 继续完成Trgs 订单实际路线展示
-2. Vms slack通知车辆问题截图
+1. 继续完成Trgs 订单实际路线展示            done
+2. Vms slack通知车辆问题截图               done
+
+3. VMS 工单统计                         done
+4. us rgs bug redeploy                 done
 3. RGS 测试环境     todo
 
+5. vms 工单reviewer通知                 half
