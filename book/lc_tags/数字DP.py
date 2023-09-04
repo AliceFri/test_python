@@ -92,6 +92,7 @@ class Solution1:
 
 if __name__ == '__main__':
     s = Solution1()
+    print(s.countDigitOne(100))
     print(s.findIntegers(1))
     print(s.atMostNGivenDigitSet(["1", "3", "5", "7"], 100))
     print(s.numberOf2sInRange(25))
