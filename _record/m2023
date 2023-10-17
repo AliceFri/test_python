@@ -331,3 +331,27 @@ VMS 车辆效率接口优化                        done
 0829
 1. trgs大屏需求代码更改
 2.
+
+SUV:
+途观L
+byd宋
+深蓝s7
+零跑C11
+BJ40
+
+======================================================================
+交接的文档有空帮忙整理一下，辛苦了~
+内部系统：v2x、vms、rgs，如果可以的话，整理一下vms-us的改动，我系统迁移时注意一下。
+运维：jenkins-slave、gitlab-slave
+如果还有其他的麻烦补充一下。
+
+vms 任务筛选需求
+
+10.08
+1. rgs交接文档          done
+2. geoserver交接文档    done
+3. v2x-bj交接文档       done
+
+
+4. vms交接文档          todo
+5. rgs-china check-map-version
