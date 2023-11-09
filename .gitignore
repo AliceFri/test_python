@@ -2,5 +2,5 @@
 */*pycache*
 *.pyc
 
-/Rust/projects/*/target/
-/Rust/all_proj/*/target/
+/ProgramLanguage/Rust/projects/*/target/
+/ProgramLanguage/Rust/all_proj/*/target/
