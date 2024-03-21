@@ -142,3 +142,11 @@ git reset <>
 #### 清理本地的远程分支
 git remote prune origin --dry-run
 git remote prune origin
+
+
+#### 实用命令
+    stash: 存储临时代码       git stash list
+    reset --soft: 回退commit的同时保留修改内容
+    cherry-pick: 复制commit
+    revert: 撤销commit的修改内容
+    reflog: 记录了commit的历史操作
